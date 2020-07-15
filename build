@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+# Provide GLIBC
+curl -sSL -o /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+for pkg in glibc glibc-bin glibc-i18n; do
+  curl -sSL -o pkg.apk https://github.com/sgerrand/alpine-pkg-glibc/releases/download/$GLIBC_VERSION/$pkg-$GLIBC_VERSION.apk
+  apk add pkg.apk
+  rm pkg.apk
+done
+
+/usr/glibc-compat/bin/localedef -i en_US -f UTF-8 en_US.UTF-8
+
+apk add --no-cache npm perl-utils m4
+
+npm i -g esy --unsafe-perm=true

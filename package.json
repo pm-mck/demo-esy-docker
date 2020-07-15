@@ -1,0 +1,12 @@
+{
+    "name":"demo-esy-docker",
+    "version": "1.0.0",
+    "devDependencies": {
+        "@opam/dune": "2.6.0",
+        "ocaml":"4.10.0",
+        "pkg-config": "esy-packages/pkg-config"
+    },
+    "esy": {
+        "build": "dune build @all"
+    }
+}
